@@ -1,0 +1,23 @@
+[
+    {
+        "id": "1",
+        "postId": 3,
+        "name": "Nabila",
+        "description": "This is great Parts Manufacturer Company. They delivery product as soon as possible",
+        "img": "https://i.ibb.co/X5wPJLX/doctor.png"
+    },
+    {
+        "id": "2",
+        "postId": 3,
+        "name": "Kayes",
+        "description": "Parts Quality is Average. Providing warranty for that their product are as good as you want",
+        "img": "https://i.ibb.co/FVsDFsY/1640680010421-1.jpg"
+    },
+    {
+        "id": "2",
+        "postId": 3,
+        "name": "Emrul",
+        "description": "Shipping time is faster and quality are good. ",
+        "img": "https://i.ibb.co/GkfdqHs/IMG-2891-removebg-preview.png"
+    }
+]

@@ -1,6 +1,7 @@
 [
     {
         "id": "1",
+        "postId": 3,
         "name": "Arduino Uno",
         "description": "Arduino Uno is the best board to get started with embedded system programming. If you are a beginner in this field, then this Arduino Uno can be a robust board that you can start playing with it. On this open-source Arduino platform, you may find the full schematic and PCB layout online ",
         "price": 1200,
@@ -10,6 +11,7 @@
     },
     {
         "id": "2",
+        "postId": 3,
         "name": "Raspberry Pi Pico",
         "description": "Raspberry Pi Pico is a low-cost, high-performance microcontroller board with flexible digital interfaces. Microcontrollers are tiny computers, but they tend to lack large volume storage and peripheral devices that you can plug in (for example, keyboards or monitors).",
         "price": 250,
@@ -19,6 +21,7 @@
     },
     {
         "id": "3",
+        "postId": 3,
         "name": "DC Motor",
         "description": "ts casing is made of rustproof material mainly steel with some protective coatings, with few plastic parts. It is a high torque high power device for mid to high-power applications generally in robotics, quadcopters, and industrials.",
         "price": 199,

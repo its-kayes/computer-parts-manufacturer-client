@@ -1,0 +1,7 @@
+.parts {
+    margin-left: 40px ;
+    display: grid;
+    /* justify-content: space-evenly; */
+    grid-gap: 40px;
+    grid-template-columns: repeat(3, 1fr);
+}
