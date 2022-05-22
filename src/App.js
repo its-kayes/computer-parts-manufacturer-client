@@ -11,6 +11,8 @@ import Footer from './page/Shared/Footer';
 import Purchase from './page/Order/Purchase';
 import RequireAuth from './page/Shared/RequireAuth';
 import AllParts from './page/Parts/AllParts';
+import Dashboard from './page/Dashboard/Dashboard';
+import MyOrders from './page/Dashboard/MyOrders';
 
 
 function App() {
@@ -20,10 +22,15 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}>  </Route>
         <Route path='/home' element={<Home></Home>}>  </Route>\
-        <Route path='/allparts' element={ <AllParts></AllParts> }> </Route>
+        <Route path='/allparts' element={<AllParts></AllParts>}> </Route>
+
         <Route path='/purchase/:id' element={<RequireAuth>
           <Purchase> </Purchase>
         </RequireAuth>}> </Route>
+
+        <Route path='/dashboard' element={<Dashboard> </Dashboard>}>
+          <Route index element={<MyOrders></MyOrders>} /> 
+         </Route>
         <Route path='/login' element={<Login> </Login>}> </Route>
         <Route path='/register' element={<Register> </Register>} > </Route>
       </Routes>

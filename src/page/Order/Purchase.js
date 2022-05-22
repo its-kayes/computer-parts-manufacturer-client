@@ -56,7 +56,6 @@ const Purchase = () => {
 
     return (
         <div>
-            <h2> Ghu kha </h2>
             <div>
                 <div class="hero min-h-screen bg-base-200">
                     <div class="hero-content flex-col lg:flex-row">
@@ -66,7 +65,7 @@ const Purchase = () => {
                             <p className='font-bold text-success my-2'> Price: ${part?.price} (Per item) </p>
                             <div className='font-semibold'>
                                 <p>In Stock: {part?.stock} pieces</p>
-                                <p>Minimum buy: {part?.minOrder} pieces</p>
+                                <p>Minimum Order: {part?.minOrder} pieces</p>
                             </div>
                             <p class="py-6"> {part?.description} </p>
                             <button > <label for="my-modal-6" class="btn modal-button">Order Now</label> </button>

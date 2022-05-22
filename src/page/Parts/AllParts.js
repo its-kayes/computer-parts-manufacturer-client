@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useParts from '../../hook/useParts';
-import Parts from '../Shared/Parts';
+
 
 const AllParts = () => {
 
@@ -27,7 +27,7 @@ const AllParts = () => {
                                 <p className='font-bold'> Price: {part.price} (Per item) </p>
                                 <div className='flex font-semibold'>
                                     <p>Stock: {part.stock}</p>
-                                    <p>Minimum buy: {part.minOrder} piece</p>
+                                    <p>Minimum Order: {part.minOrder} piece</p>
                                 </div>
                                 <p> {part.description} </p>
                                 <div class="card-actions justify-end">
