@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useParts from '../../hook/useParts';
 import './parts.css';
 
@@ -11,10 +12,15 @@ const Parts = () => {
     //     .then(data => setParts(data));
     // }, [])
     let parts = useParts();
-
+    let navigate = useNavigate();
 
     let homItemsId = 3
     let homeItems = parts?.filter(item => item.postId === homItemsId);
+
+    let orderNow = id => {
+        navigate(`/purchase/${id}`)
+        console.log(id);      
+    }
 
     return (
         <div className='rounded-3xl border-2'>
@@ -34,7 +40,7 @@ const Parts = () => {
                             </div>
                             <p> {part.description} </p>
                             <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Order Now</button>
+                                <button onClick={()=> orderNow(part._id)} class="btn btn-primary">Order Now</button>
                             </div>
                         </div>
                     </div>)
