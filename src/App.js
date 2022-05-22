@@ -10,6 +10,7 @@ import Register from './page/Login/Register';
 import Footer from './page/Shared/Footer';
 import Purchase from './page/Order/Purchase';
 import RequireAuth from './page/Shared/RequireAuth';
+import AllParts from './page/Parts/AllParts';
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}>  </Route>
-        <Route path='/home' element={<Home></Home>}>  </Route>
+        <Route path='/home' element={<Home></Home>}>  </Route>\
+        <Route path='/allparts' element={ <AllParts></AllParts> }> </Route>
         <Route path='/purchase/:id' element={<RequireAuth>
           <Purchase> </Purchase>
         </RequireAuth>}> </Route>
