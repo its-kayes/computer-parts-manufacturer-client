@@ -5,6 +5,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import Social from './Social';
 
 
 let errorElement;
@@ -89,7 +90,8 @@ const Login = () => {
                     </div>
                     {/* <p className='mt-5'> ________________________________________ </p> */}
                     <div class="divider">OR</div>
-                    {/* <Social> </Social> */}
+                    
+                    <Social> </Social>
                 </div>
             </div>
         </div>
