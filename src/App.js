@@ -13,6 +13,7 @@ import RequireAuth from './page/Shared/RequireAuth';
 import AllParts from './page/Parts/AllParts';
 import Dashboard from './page/Dashboard/Dashboard';
 import MyOrders from './page/Dashboard/MyOrders';
+import AddReview from './page/Dashboard/AddReview';
 
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
         </RequireAuth>}> </Route>
 
         <Route path='/dashboard' element={<Dashboard> </Dashboard>}>
-          <Route index element={<MyOrders></MyOrders>} /> 
+          <Route index element={<MyOrders></MyOrders>} />
+          <Route path='reviews' element={<AddReview> </AddReview>}> </Route> 
          </Route>
         <Route path='/login' element={<Login> </Login>}> </Route>
         <Route path='/register' element={<Register> </Register>} > </Route>

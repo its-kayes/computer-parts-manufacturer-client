@@ -13,7 +13,7 @@ const Reviews = () => {
     return (
         <div>
             <p className='text-center text-3xl font-mono font-bold mt-20 mb-10'> Our Clients Reviews </p>
-            <div className='flex justify-around'>
+            <div className='parts'>
                 {
                     reviews?.map(review => <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                         <div class="flex flex-col items-center py-10">

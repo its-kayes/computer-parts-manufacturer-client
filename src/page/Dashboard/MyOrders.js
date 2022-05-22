@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const MyOrders = () => {
 
     let [orders, setOrders] = useState();
 
-    fetch('http://localhost:5000/orders')
-        .then(res => res.json())
-        .then(data => setOrders(data))
+    useEffect(() => {
+        fetch('http://localhost:5000/orders')
+            .then(res => res.json())
+            .then(data => setOrders(data))
+    }, [])
+
+    // setTimeout('10');
 
     return (
         <div>
@@ -31,7 +35,7 @@ const MyOrders = () => {
                                 <tr>
                                     <th> {index + 1} </th>
                                     <td> {order.partsName} </td>
-                                    <td> {order.address } </td>
+                                    <td> {order.address} </td>
                                     <td> {order.totalOrder} </td>
                                     <td> {order.number} </td>
                                     <td> {order.email} </td>
