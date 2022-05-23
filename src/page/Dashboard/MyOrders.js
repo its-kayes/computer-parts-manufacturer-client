@@ -1,14 +1,37 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
+import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const MyOrders = () => {
 
-    let [orders, setOrders] = useState();
+    let [user] = useAuthState(auth);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/orders')
-            .then(res => res.json())
-            .then(data => setOrders(data))
-    }, [])
+    // let [orders, setOrders] = useState();
+
+    let email = user?.email;
+    console.log(email);
+    let url = `http://localhost:5000/orders/${email}`;
+
+    // useEffect(() => {
+    //     fetch(url)
+    //         .then(res => res.json())
+    //         .then(data => setOrders(data))
+    // }, [])
+
+    let { data: orders, isLoading, refetch } = useQuery('users', () => fetch( url, {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json',
+            // authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        },
+    }).then(res => res.json()))
+    // setOrders(orderss);
+
+    if (isLoading) {
+        return <Loading> </Loading>
+    }
 
     // setTimeout('10');
 
@@ -28,6 +51,8 @@ const MyOrders = () => {
                                 <th>Total Order </th>
                                 <th>Number </th>
                                 <th>Email</th>
+                                <th>Payment</th>
+                                <th>Transaction ID</th>
                             </tr>
                         </thead>
                         {
@@ -39,6 +64,7 @@ const MyOrders = () => {
                                     <td> {order.totalOrder} </td>
                                     <td> {order.number} </td>
                                     <td> {order.email} </td>
+                                    <td> Pay </td>
                                 </tr>
                             </tbody>)
                         }
