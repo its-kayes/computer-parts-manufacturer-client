@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Dashboard = () => {
+
+    let goProfile = event => {
+        toast.warn(" The About fields are empty until you update it. And if you do not see the correct information after the update, please take a hard reload ")
+    }
+
     return (
         <div>
             <div class="drawer drawer-mobile">
@@ -19,7 +25,7 @@ const Dashboard = () => {
                         {/* <!-- Sidebar content here --> */}
                         <li><Link to='/dashboard'>My Orders</Link></li>
                         <li><Link to='reviews'>Add A Review</Link></li>
-                        <li><Link to='profile'>My Profile</Link></li>
+                        <li><Link onClick={goProfile} to='profile'>My Profile</Link></li>
                         {/* {
                             admin && <>
                                 <li><Link to='users'>All User</Link></li>
