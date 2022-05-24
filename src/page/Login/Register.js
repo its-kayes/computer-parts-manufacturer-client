@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth'
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../../hook/useToken';
 import Loading from '../Shared/Loading';
 import Social from './Social';
 // import Social from '../Social/Social';
@@ -23,6 +24,8 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+
+    let [   ] = useToken(user);
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
@@ -48,7 +51,7 @@ const Register = () => {
     }
 
     // console.log(name);
-    console.log(user);
+    // console.log(user);
 
     return (
         <div>
@@ -60,7 +63,7 @@ const Register = () => {
                         <h5 className="text-xl font-medium text-gray-900 dark:text-white text-center">Create Account </h5>
                         <div>
                             <label htmlFor="name" name="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your Name</label>
-                            <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="user name" required="" />
+                            <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="user name" required />
                         </div>
                         <div>
                             <label htmlFor="email" name="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your Email</label>

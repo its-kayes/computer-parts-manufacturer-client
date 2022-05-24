@@ -26,6 +26,7 @@ const Dashboard = () => {
                         <li><Link to='/dashboard'>My Orders</Link></li>
                         <li><Link to='reviews'>Add A Review</Link></li>
                         <li><Link onClick={goProfile} to='profile'>My Profile</Link></li>
+                        <li> <Link to='users'> All Users </Link> </li>
                         {/* {
                             admin && <>
                                 <li><Link to='users'>All User</Link></li>

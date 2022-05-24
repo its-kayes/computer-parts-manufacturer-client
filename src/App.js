@@ -18,6 +18,7 @@ import MyProfile from './page/Dashboard/MyProfile';
 import MyPortfolio from './page/MyPortfolio/MyPortfolio';
 import Blogs from './page/Blogs/Blogs';
 import NotFound from './page/Shared/NotFound';
+import Users from './page/Dashboard/Users';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route index element={<MyOrders></MyOrders>} />
           <Route path='reviews' element={<AddReview> </AddReview>}> </Route>
           <Route path='profile' element={<MyProfile></MyProfile>}> </Route>
+          <Route path='users' element={<Users> </Users>}> </Route>
         </Route>
         <Route path='/blogs' element={<Blogs></Blogs>}> </Route>
         <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}> </Route>
