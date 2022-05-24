@@ -2,10 +2,12 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
 const MyOrders = () => {
+    let navigate = useNavigate();
 
     let [user] = useAuthState(auth);
 
@@ -38,17 +40,17 @@ const MyOrders = () => {
                 }
             })
                 .then(res => {
-                    if (res.status === 404 || res.status === 401) {
-                        // let errorCode = window.confirm('Invalid Login Token');
-                        // if(errorCode) {
-                        //     signOut(auth);
-                        //     localStorage.removeItem('accessToken');
-                        //     navigate('/')
-                        // // }
-                        // signOut(auth);
-                        // localStorage.removeItem('accessToken');
-                        // navigate('/');
-                    }
+                    // if (res.status === 404 || res.status === 401) {
+                    //     let errorCode = window.confirm('Invalid Login Token');
+                    //     if(errorCode) {
+                    //         signOut(auth);
+                    //         localStorage.removeItem('accessToken');
+                    //         navigate('/')
+                    //     }
+                    //     signOut(auth);
+                    //     localStorage.removeItem('accessToken');
+                    //     navigate('/');
+                    // }
                     console.log('res', res);
                     return res.json()
                 })
@@ -57,6 +59,9 @@ const MyOrders = () => {
                     setOrders(data);
                 })
         }
+        // else{
+        //     navigate('/login')
+        // }
 
     }, [user])
 

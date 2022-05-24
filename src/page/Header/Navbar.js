@@ -95,7 +95,7 @@ const Navbar = () => {
     let signout = () => {
         let yes = window.confirm(" Are You Sure You Want To Log Out ?");
         if (yes) {
-            localStorage.removeItem('accessToken');
+            // localStorage.removeItem('accessToken');
             signOut(auth);
         }
     }
