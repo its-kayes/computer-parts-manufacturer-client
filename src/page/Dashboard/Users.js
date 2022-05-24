@@ -6,7 +6,7 @@ import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
 const Users = () => {
-    let [role, setRole] = useState('');
+    // let [role, setRole] = useState('');
     // let [user] = useAuthState(auth);
     // let email = user?.email;
 
@@ -22,20 +22,42 @@ const Users = () => {
         return <Loading> </Loading>
     }
 
-    let makeAdmin = (email, role) => {
-        console.log(role);
-        setRole(role);
+
+    let makeAdmin = (email) => {
+        console.log(email);
         fetch(`http://localhost:5000/allusers/admin/${email}`, {
             method: 'PUT',
             'content-type': 'application/json'
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            toast.success(' Update as Admin ')
-            refetch();
-        });
+            .then(res => res.json())
+            .then(data => {
+                    console.log(data);
+                    toast.success(' Update as Admin ')
+                    refetch();
+            });
     }
+
+
+    // let makeAdmin = (email) => {
+    //     console.log(email);
+    //     fetch(`http://localhost:5000/allusers/admin/${email}`, {
+    //         method: 'PUT',
+    //         'content-type': 'application/json'
+    //     })
+    //         .then(res => {
+    //             if (res.status === 403) {
+    //                 toast.error(' Failed to make admin');
+    //             }
+    //             return res.json()
+    //         })
+    //         .then(data => {
+    //             if (data.modifiedCount > 0) {
+    //                 console.log(data);
+    //                 toast.success(' Update as Admin ')
+    //                 refetch();
+    //             }
+    //         });
+    // }
 
 
     return (
@@ -60,9 +82,9 @@ const Users = () => {
                                         <td> {user.email} </td>
                                         {
                                             user?.role !== 'admin' ?
-                                            <td> <button onClick={() => makeAdmin(user.email, user?.role)} className='btn bg-red-400'> Make Admin </button> </td>
-                                            : 
-                                            <td> <button disabled onClick={() => makeAdmin(user.email, user?.role)} className='btn bg-red-400'> Make Admin </button> </td>
+                                                <td> <button onClick={() => makeAdmin(user.email, user?.role)} className='btn bg-red-400'> Make Admin </button> </td>
+                                                :
+                                                <td> <button disabled onClick={() => makeAdmin(user.email, user?.role)} className='btn bg-red-400'> Make Admin </button> </td>
                                         }
                                         <td> Remove User </td>
                                     </tr>

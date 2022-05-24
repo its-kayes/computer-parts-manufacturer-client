@@ -1,8 +1,14 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
+import useAdmin from '../../hook/useAdmin';
 
 const Dashboard = () => {
+    let [user] = useAuthState(auth);
+    let [admin] = useAdmin(user);
+    console.log(admin);
 
     let goProfile = event => {
         toast.warn(" The About fields are empty until you update it. And if you do not see the correct information after the update, please take a hard reload ")
@@ -26,12 +32,17 @@ const Dashboard = () => {
                         <li><Link to='/dashboard'>My Orders</Link></li>
                         <li><Link to='reviews'>Add A Review</Link></li>
                         <li><Link onClick={goProfile} to='profile'>My Profile</Link></li>
-                        <li> <Link to='users'> All Users </Link> </li>
+                        {/* {
+                            admin ?
+                                ''
+                                :
+                                <li> <Link to='users'> All Users </Link> </li>
+                        } */}
+                        {admin && <li> <Link to='users'> All Users </Link> </li>}
                         {/* {
                             admin && <>
-                                <li><Link to='users'>All User</Link></li>
-                                <li><Link to='addDoctor'>Add Doctor</Link></li>
-                                <li><Link to='managedoctors'>Manage Doctors</Link></li>
+                                <li> <Link to='users'> All Users </Link> </li>
+                                
                             </>
                         } */}
                     </ul>
