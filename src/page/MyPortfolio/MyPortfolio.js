@@ -90,11 +90,11 @@ const MyPortfolio = () => {
                 </div>
             </div>
 
-            <dir>
+            <dir className=''>
                 <div className='flex justify-evenly py-20'>
-                    <a href="nkedin.com/in/emrul-kayes-b61895237/"> <i class="fa-brands fa-linkedin text-8xl"> </i></a>
-                    <a href="https://github.com/its-kayes"> <i class="fa-brands fa-github text-8xl"> </i>  </a> 
-                    <a href="https://www.facebook.com/kayes0000000/"> <i class="fa-brands fa-facebook text-8xl"></i> </a>
+                    <a href="nkedin.com/in/emrul-kayes-b61895237/"> <i class="fa-brands fa-linkedin text-8xl text-white"> </i></a>
+                    <a href="https://github.com/its-kayes"> <i class="fa-brands fa-github text-8xl text-white"> </i>  </a> 
+                    <a href="https://www.facebook.com/kayes0000000/"> <i class="fa-brands fa-facebook text-8xl text-white"></i> </a>
                     
                     {/* <i class="fa-brands fa-linkedin text-8xl"> </i>
                     <i class="fa-brands fa-facebook text-8xl "> </i> */}
