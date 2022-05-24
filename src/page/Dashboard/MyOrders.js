@@ -1,3 +1,4 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
@@ -8,32 +9,60 @@ const MyOrders = () => {
 
     let [user] = useAuthState(auth);
 
-    // let [orders, setOrders] = useState();
 
     let email = user?.email;
     console.log(email);
     let url = `http://localhost:5000/orders/${email}`;
 
-    // useEffect(() => {
-    //     fetch(url)
-    //         .then(res => res.json())
-    //         .then(data => setOrders(data))
-    // }, [])
 
-    let { data: orders, isLoading, refetch } = useQuery('users', () => fetch( url, {
-        method: 'GET',
-        headers: {
-            'content-type': 'application/json',
-            // authorization: `Bearer ${localStorage.getItem('accessToken')}`
-        },
-    }).then(res => res.json()))
-    // setOrders(orderss);
+    // let { data: orders, isLoading, refetch } = useQuery('users', () => fetch(url, {
+    //     method: 'GET',
+    //     headers: {
+    //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    //     },
+    // }).then(res => res.json()))
 
-    if (isLoading) {
-        return <Loading> </Loading>
-    }
+    // if (isLoading) {
+    //     return <Loading> </Loading>
+    // }
 
-    // setTimeout('10');
+    let [orders, setOrders] = useState();
+
+
+    useEffect(() => {
+        if (user) {
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => {
+                    if (res.status === 404 || res.status === 401) {
+                        // let errorCode = window.confirm('Invalid Login Token');
+                        // if(errorCode) {
+                        //     signOut(auth);
+                        //     localStorage.removeItem('accessToken');
+                        //     navigate('/')
+                        // // }
+                        // signOut(auth);
+                        // localStorage.removeItem('accessToken');
+                        // navigate('/');
+                    }
+                    console.log('res', res);
+                    return res.json()
+                })
+                .then(data => {
+                    console.log(data);
+                    setOrders(data);
+                })
+        }
+
+    }, [user])
+
+
+    console.log(orders);
+
 
     return (
         <div>

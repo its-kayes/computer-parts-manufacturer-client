@@ -25,7 +25,7 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
-    let [   ] = useToken(user);
+    let [token] = useToken(user);
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
