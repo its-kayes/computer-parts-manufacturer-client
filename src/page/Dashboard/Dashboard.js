@@ -8,7 +8,7 @@ import Loading from '../Shared/Loading';
 
 const Dashboard = () => {
     let [user] = useAuthState(auth);
-    let [admin, isAdminLoading] = useAdmin(user?.email);
+    let [admin] = useAdmin(user);
     
     // if(isAdminLoading) {
     //     return <Loading> </Loading>

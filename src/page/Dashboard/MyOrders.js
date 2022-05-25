@@ -32,7 +32,7 @@ const MyOrders = () => {
 
 
     useEffect(() => {
-        console.log(user);
+        // console.log(user);
         if (user) {
             fetch(url, {
                 method: 'GET',
@@ -52,11 +52,11 @@ const MyOrders = () => {
                         localStorage.removeItem('accessToken');
                         navigate('/');
                     }
-                    console.log('res', res);
+                    // console.log('res', res);
                     return res.json()
                 })
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     setOrders(data);
                 })
         }
@@ -67,7 +67,7 @@ const MyOrders = () => {
     }, [user])
 
 
-    console.log(orders);
+    // console.log(orders);
 
 
     return (

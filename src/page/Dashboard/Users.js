@@ -8,16 +8,27 @@ const Users = () => {
     // let [user] = useAuthState(auth);
     // let email = user?.email;
 
-    let { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/allusers', {
+    // let { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/allusers', {
+    //     method: 'GET',
+    //     headers: {
+    //         'content-type': 'application/json'
+    //     }
+    // })
+    //     .then(res => res.json()))
+
+    // if (isLoading) {
+    //     return <Loading> </Loading>
+    // }
+
+
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/allusers', {
         method: 'GET',
         headers: {
-            'content-type': 'application/json'
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
-    })
-        .then(res => res.json()))
-
+    }).then(res => res.json()));
     if (isLoading) {
-        return <Loading> </Loading>
+        return <Loading></Loading>
     }
 
 
@@ -42,7 +53,7 @@ const Users = () => {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
-                // authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             }
         })
             .then(res => {
