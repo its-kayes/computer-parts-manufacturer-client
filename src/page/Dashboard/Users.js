@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
-import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
 const Users = () => {
@@ -23,41 +21,44 @@ const Users = () => {
     }
 
 
-    let makeAdmin = (email) => {
-        console.log(email);
-        fetch(`http://localhost:5000/allusers/admin/${email}`, {
-            method: 'PUT',
-            'content-type': 'application/json'
-        })
-            .then(res => res.json())
-            .then(data => {
-                    console.log(data);
-                    toast.success(' Update as Admin ')
-                    refetch();
-            });
-    }
-
-
     // let makeAdmin = (email) => {
     //     console.log(email);
     //     fetch(`http://localhost:5000/allusers/admin/${email}`, {
     //         method: 'PUT',
     //         'content-type': 'application/json'
     //     })
-    //         .then(res => {
-    //             if (res.status === 403) {
-    //                 toast.error(' Failed to make admin');
-    //             }
-    //             return res.json()
-    //         })
+    //         .then(res => res.json())
     //         .then(data => {
-    //             if (data.modifiedCount > 0) {
     //                 console.log(data);
     //                 toast.success(' Update as Admin ')
     //                 refetch();
-    //             }
     //         });
-    // }
+    //
+
+
+    let makeAdmin = (email) => {
+        console.log(email);
+        fetch(`http://localhost:5000/allusers/admin/${email}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                // authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            }
+        })
+            .then(res => {
+                if (res.status === 403) {
+                    toast.error(' Failed to make admin');
+                }
+                return res.json()
+            })
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    console.log(data);
+                    toast.success(' Update as Admin ')
+                    refetch();
+                }
+            });
+    }
 
 
     return (

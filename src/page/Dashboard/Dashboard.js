@@ -4,10 +4,16 @@ import { Link, Outlet } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import useAdmin from '../../hook/useAdmin';
+import Loading from '../Shared/Loading';
 
 const Dashboard = () => {
     let [user] = useAuthState(auth);
-    let [admin] = useAdmin(user);
+    let [admin, isAdminLoading] = useAdmin(user?.email);
+    
+    // if(isAdminLoading) {
+    //     return <Loading> </Loading>
+    // }
+
     console.log(admin);
 
     let goProfile = event => {

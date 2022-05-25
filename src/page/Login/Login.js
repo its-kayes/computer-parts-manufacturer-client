@@ -42,7 +42,7 @@ const Login = () => {
         event.preventDefault();
         const password = event.target.password.value;
         await signInWithEmailAndPassword(email, password);
-        let { data } = await axios.post('https://lit-gorge-09323.herokuapp.com/login', { email });
+        let { data } = await axios.post('http://localhost:3000/login', { email });
         localStorage.setItem('accessToken', data.accessToken);
     }
 

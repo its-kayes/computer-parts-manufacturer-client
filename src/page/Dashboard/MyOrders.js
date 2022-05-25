@@ -13,7 +13,7 @@ const MyOrders = () => {
 
 
     let email = user?.email;
-    console.log(email);
+    // console.log(email);
     let url = `http://localhost:5000/orders/${email}`;
 
 
@@ -28,29 +28,30 @@ const MyOrders = () => {
     //     return <Loading> </Loading>
     // }
 
-    let [orders, setOrders] = useState();
+    const [orders, setOrders] = useState([]);
 
 
     useEffect(() => {
+        console.log(user);
         if (user) {
             fetch(url, {
                 method: 'GET',
                 headers: {
-                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
             })
                 .then(res => {
-                    // if (res.status === 404 || res.status === 401) {
-                    //     let errorCode = window.confirm('Invalid Login Token');
-                    //     if(errorCode) {
-                    //         signOut(auth);
-                    //         localStorage.removeItem('accessToken');
-                    //         navigate('/')
-                    //     }
-                    //     signOut(auth);
-                    //     localStorage.removeItem('accessToken');
-                    //     navigate('/');
-                    // }
+                    if (res.status === 404 || res.status === 401) {
+                        let errorCode = window.confirm('Invalid Login Token');
+                        if(errorCode) {
+                            // signOut(auth);
+                            // localStorage.removeItem('accessToken');
+                            navigate('/')
+                        }
+                        // signOut(auth);
+                        localStorage.removeItem('accessToken');
+                        navigate('/');
+                    }
                     console.log('res', res);
                     return res.json()
                 })
