@@ -23,13 +23,13 @@ const Parts = () => {
     }
 
     return (
-        <div className='rounded-3xl border-2'>
+        <div className='rounded-3xl border-2 text-white bg-teal-700'>
             {/* <p> {homeItems?.length} </p> */}
             <h1 className='text-4xl text-center mt-10 font-bold underline font-mono'> PARTS THAT WE PROVIDES  </h1>
 
-            <div className='parts my-20'>
+            <div className='parts my-20 '>
                 {
-                    homeItems?.map(part => <div key={part.id} class="card card-compact w-96 bg-base-100 shadow-xl">
+                    homeItems?.map(part => <div key={part.id} class="bg-slate-800 card card-compact w-96 bg-base-100 shadow-xl">
                         <figure><img src={part.img} alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-teal-400 ">{part.name}</h2>

@@ -6,7 +6,7 @@ const Subscribe = () => {
             {/* <h1 className='text-3xl mb-3'> SUBSCRIBE TO GET ON TIME UPDATE </h1>
             <span className='text-lg'> We are not share your email with anyone </span> */}
 
-            <div className="card w-2/4 border-2 p-8">
+            <div className="card w-2/4 border-2 p-8 bg-black text-white">
                 <div className=''>
                     <h1 className='font-bold mb-4 text-xl'> Get more updates... </h1>
                     <p> Do you want to get notified when a new part is added to our Website? Sign up for our newsletter and you'll be among the first to find out about new product, parts  , versions, and tools. </p>
