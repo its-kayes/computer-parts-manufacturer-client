@@ -1,23 +1,26 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import useAdmin from '../../hook/useAdmin';
 import Loading from '../Shared/Loading';
 
 const Dashboard = () => {
+    let navigate = useNavigate();
     let [user] = useAuthState(auth);
-    let [admin] = useAdmin(user);
-    
-    // if(isAdminLoading) {
-    //     return <Loading> </Loading>
-    // }
+    let [admin, adminLoading] = useAdmin(user);
+
+    if (adminLoading) {
+        return <Loading> </Loading>
+    }
 
     console.log(admin);
 
-    let goProfile = event => {
-        toast.warn(" The About fields are empty until you update it. And if you do not see the correct information after the update, please take a hard reload ")
+    let allUser = event => {
+        event.preventDefult();
+        // window.location.reload(false);
+        // navigate('/dashboard/users');
     }
 
     return (
@@ -35,24 +38,21 @@ const Dashboard = () => {
                     <label for="my-drawer-2" class="drawer-overlay"></label>
                     <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
-                        <li><Link to='/dashboard'>My Orders</Link></li>
-                        <li><Link to='reviews'>Add A Review</Link></li>
-                        <li><Link onClick={goProfile} to='profile'>My Profile</Link></li>
-                        {/* {
-                            admin ?
-                                ''
-                                :
-                                <li> <Link to='users'> All Users </Link> </li>
-                        } */}
-                        {admin && <li> <Link to='users'> All Users </Link> </li>}
-                        {/* {
-                            admin && <>
-                                <li> <Link to='users'> All Users </Link> </li>
-                                
-                            </>
-                        } */}
-                    </ul>
+                        <li><Link to='/dashboard'>My Profile</Link></li>
+                        {admin && <>
+                            <li> <Link onClick={allUser} to='users'> All Users </Link> </li>
+                            <li><Link to='addproduct'> Add Product </Link></li>
+                            <li><Link to='allorders'> Manage Orders </Link></li>
+                            <li><Link to='products'> Manage Products </Link></li>
 
+                        </>}
+                        {
+                            !admin && <>
+                                <li><Link to='orders'>My Orders</Link></li>
+                                <li><Link to='reviews'>Add A Review</Link></li>
+                            </>
+                        }
+                    </ul>
                 </div>
             </div>
         </div>

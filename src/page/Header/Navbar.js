@@ -81,6 +81,7 @@ import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import CustomLink from '../Shared/CustomLink';
 
@@ -95,9 +96,13 @@ const Navbar = () => {
     let signout = () => {
         let yes = window.confirm(" Are You Sure You Want To Log Out ?");
         if (yes) {
-            // localStorage.removeItem('accessToken');
+            localStorage.removeItem('accessToken');
             signOut(auth);
         }
+    }
+
+    let goProfile = event => {
+        toast.warn(" The About fields are empty until you update it. And if you do not see the correct information after the update, please take a hard reload ")
     }
 
     return (
@@ -123,7 +128,7 @@ const Navbar = () => {
                     <ul class="menu menu-horizontal p-0">
                         <li><CustomLink className='block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' to='/home'> Home </CustomLink></li>
                         <li><CustomLink className='block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' to='/allparts'> Available Parts </CustomLink></li>
-                        <li><CustomLink className='block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' to='/dashboard'> Dashboard </CustomLink></li>
+                        <li><CustomLink onClick={goProfile} className='block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' to='/dashboard'> Dashboard </CustomLink></li>
                         <li><CustomLink className='block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' to='/blogs'> Blogs </CustomLink></li>
                         <li><CustomLink className='block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' to='/portfolio'> My Portfolio </CustomLink></li>
                         {/* <li><CustomLink className='block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' to='/login'> Login </CustomLink></li> */}
