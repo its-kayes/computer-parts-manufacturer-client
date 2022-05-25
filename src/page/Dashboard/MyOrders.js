@@ -2,7 +2,7 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
@@ -43,7 +43,7 @@ const MyOrders = () => {
                 .then(res => {
                     if (res.status === 404 || res.status === 401) {
                         let errorCode = window.confirm('Invalid Login Token');
-                        if(errorCode) {
+                        if (errorCode) {
                             // signOut(auth);
                             // localStorage.removeItem('accessToken');
                             navigate('/')
@@ -100,6 +100,15 @@ const MyOrders = () => {
                                     <td> {order.number} </td>
                                     <td> {order.email} </td>
                                     <td> Pay </td>
+                                    <td> In Process </td>
+
+                                    {/* <td>
+                                        {(order.price && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success'>pay</button></Link>}
+                                        {(order.price && order.paid) && <div>
+                                            <p><span className='text-success'>Paid</span></p>
+                                            <p>Transaction id: <span className='text-success'>{order.transactionId}</span></p>
+                                        </div>}
+                                    </td> */}
                                 </tr>
                             </tbody>)
                         }
