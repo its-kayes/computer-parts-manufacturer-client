@@ -25,7 +25,7 @@ const AddReview = () => {
             star: star
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://enigmatic-lake-23819.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

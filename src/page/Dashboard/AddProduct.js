@@ -13,28 +13,28 @@ const AddProduct = () => {
         let body = event.target.body.value;
         let partsImg = event.target.img.value;
         // let email = event.target.email.value;
-        let newParts = { 
+        let newParts = {
             name: name,
             description: body,
             price: price,
             stock: quantity,
             minOrder: minOrder,
             img: partsImg
-         }
+        }
         event.target.reset();
 
-        fetch('http://localhost:5000/products', {
+        fetch('https://enigmatic-lake-23819.herokuapp.com/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(newParts)
         })
-        .then(res =>res.json())
-        .then( data => {
-            console.log(data);
-            toast.success(' Parts Add to Our Store  ')
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success(' Parts Add to Our Store  ')
+            })
     }
 
 

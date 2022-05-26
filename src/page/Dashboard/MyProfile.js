@@ -11,8 +11,8 @@ const MyProfile = () => {
     console.log(user);
     let email = user?.email;
 
-    let urlEmail = `http://localhost:5000/users/${email}`;
-    let urle = "http://localhost:5000/users";
+    let urlEmail = `https://enigmatic-lake-23819.herokuapp.com/users/${email}`;
+    let urle = "https://enigmatic-lake-23819.herokuapp.com/users";
 
     let { data: users, isLoading, refetch } = useQuery('users', () => fetch(urlEmail, {
         method: 'GET',
@@ -49,7 +49,7 @@ const MyProfile = () => {
             address: address,
             img: img,
         }
-        let url = `http://localhost:5000/users/${email}`
+        let url = `https://enigmatic-lake-23819.herokuapp.com/users/${email}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -65,7 +65,7 @@ const MyProfile = () => {
                     toast.success(`Updated User Information`);
                 }
             })
-            event.target.reset();
+        event.target.reset();
     }
 
     return (

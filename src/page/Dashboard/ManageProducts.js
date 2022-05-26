@@ -9,7 +9,7 @@ import Loading from '../Shared/Loading';
 
 const ManageProducts = () => {
 
-    let { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('http://localhost:5000/parts', {
+    let { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('https://enigmatic-lake-23819.herokuapp.com/parts', {
         method: 'GET',
         headers: {
             'content-type': 'application/json'
@@ -33,7 +33,7 @@ const ManageProducts = () => {
                     label: 'Yes',
                     onClick: () => {
                         console.log(id);
-                        fetch(`http://localhost:5000/part/${id}`, {
+                        fetch(`https://enigmatic-lake-23819.herokuapp.com/part/${id}`, {
                             method: 'DELETE',
                             headers: {
                                 'content-type': 'application/json'
@@ -49,7 +49,7 @@ const ManageProducts = () => {
                 },
                 {
                     label: 'No',
-                    onClick: () =>{
+                    onClick: () => {
                         toast.warn(' Delete Cancel ');
                     }
                 }
@@ -63,7 +63,7 @@ const ManageProducts = () => {
     //     // if (event) {
     //     //     <div></div>
     //     // }
-    //     fetch(`http://localhost:5000/part/${event}`, {
+    //     fetch(`https://enigmatic-lake-23819.herokuapp.com/part/${event}`, {
     //         method: 'DELETE',
     //         headers: {
     //             'content-type': 'application/json'

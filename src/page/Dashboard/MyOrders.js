@@ -14,7 +14,7 @@ const MyOrders = () => {
 
     let email = user?.email;
     // console.log(email);
-    let url = `http://localhost:5000/orders/${email}`;
+    let url = `https://enigmatic-lake-23819.herokuapp.com/orders/${email}`;
 
 
     // let { data: orders, isLoading, refetch } = useQuery('users', () => fetch(url, {

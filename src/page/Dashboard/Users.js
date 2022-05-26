@@ -8,7 +8,7 @@ const Users = () => {
     // let [user] = useAuthState(auth);
     // let email = user?.email;
 
-    // let { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/allusers', {
+    // let { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://enigmatic-lake-23819.herokuapp.com/allusers', {
     //     method: 'GET',
     //     headers: {
     //         'content-type': 'application/json'
@@ -21,7 +21,7 @@ const Users = () => {
     // }
 
 
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/allusers', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://enigmatic-lake-23819.herokuapp.com/allusers', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -34,7 +34,7 @@ const Users = () => {
 
     // let makeAdmin = (email) => {
     //     console.log(email);
-    //     fetch(`http://localhost:5000/allusers/admin/${email}`, {
+    //     fetch(`https://enigmatic-lake-23819.herokuapp.com/allusers/admin/${email}`, {
     //         method: 'PUT',
     //         'content-type': 'application/json'
     //     })
@@ -49,7 +49,7 @@ const Users = () => {
 
     let makeAdmin = (email) => {
         console.log(email);
-        fetch(`http://localhost:5000/allusers/admin/${email}`, {
+        fetch(`https://enigmatic-lake-23819.herokuapp.com/allusers/admin/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

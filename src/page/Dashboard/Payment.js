@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_test_51L1e5sAjoeNet3APqkd0vZTXJCQ2ivpZcl4mX
 
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:5000/payment/${id}`;
+    const url = `https://enigmatic-lake-23819.herokuapp.com/payment/${id}`;
     // console.log(id);
 
     const { data: order, isLoading } = useQuery(['order', id], () => fetch(url, {
@@ -26,7 +26,7 @@ const Payment = () => {
     }
 
     return (
-        <div> 
+        <div>
             {/* <h1> kaj kore </h1> */}
             <div class="card w-50 max-w-md bg-base-100 shadow-xl my-12">
                 <div class="card-body">

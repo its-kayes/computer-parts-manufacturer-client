@@ -7,7 +7,7 @@
 //     useEffect(() => {
 //         let email = user?.email;
 //         if (email) {
-//             fetch(`http://localhost:5000/user/${user}`)
+//             fetch(`https://enigmatic-lake-23819.herokuapp.com/user/${user}`)
 //                 .then(res => res.json())
 //                 .then(data => {
 //                     // console.log(data);
@@ -36,7 +36,7 @@ const useAdmin = user => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            fetch(`http://localhost:5000/user/${email}`, {
+            fetch(`https://enigmatic-lake-23819.herokuapp.com/user/${email}`, {
                 method: 'GET',
                 headers: {
                     'content-type': 'application/json',

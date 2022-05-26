@@ -13,7 +13,7 @@ const Purchase = () => {
     let { id } = useParams();
 
 
-    let url = `http://localhost:5000/parts/${id}`
+    let url = `https://enigmatic-lake-23819.herokuapp.com/parts/${id}`
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -34,11 +34,11 @@ const Purchase = () => {
         let totalOrder = event.target.totalorder.value;
 
         let minOrder = 70;
-        
-        if(totalOrder < minOrder || totalOrder > maxOrder) {
+
+        if (totalOrder < minOrder || totalOrder > maxOrder) {
             toast.warning(' beshi order de hala ');
         }
-        else{
+        else {
             let orderDetails = {
                 partsName: part.name,
                 name: name,
@@ -47,17 +47,17 @@ const Purchase = () => {
                 address: address,
                 totalOrder: totalOrder
             }
-    
-            fetch('http://localhost:5000/orders', {
+
+            fetch('https://enigmatic-lake-23819.herokuapp.com/orders', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify(orderDetails)
             })
-            .then(res => res.json())
-            .then(data => console.log(data))
-    
+                .then(res => res.json())
+                .then(data => console.log(data))
+
             // console.log(orderDetails);
             toast.success('We are waiting for your payment, check your dashboard and clear your payment')
             event.target.reset();

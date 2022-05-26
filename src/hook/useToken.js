@@ -3,12 +3,12 @@ import { useEffect, useState } from "react"
 let useToken = user => {
     let [token, setToken] = useState('');
     useEffect(() => {
-        console.log(' Inside user Token', user);    
+        console.log(' Inside user Token', user);
         let email = user?.user?.email;
         let currentUser = { email: email };
         console.log(email);
         if (email) {
-            fetch(`http://localhost:5000/allusers/${email}`, {
+            fetch(`https://enigmatic-lake-23819.herokuapp.com/allusers/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
