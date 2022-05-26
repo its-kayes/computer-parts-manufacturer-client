@@ -22,6 +22,7 @@ import Users from './page/Dashboard/Users';
 import ManageProducts from './page/Dashboard/ManageProducts';
 import AddProduct from './page/Dashboard/AddProduct';
 import ManageOrders from './page/Dashboard/ManageOrders';
+import Payment from './page/Dashboard/Payment';
 
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
           <Route path='products' element={<ManageProducts></ManageProducts>}> </Route>
           <Route path='addproduct' element={<AddProduct></AddProduct>}> </Route>
           <Route path='allorders' element={<ManageOrders></ManageOrders>}> </Route>
+
+          <Route path='payment/:id' element={<Payment></Payment>}> </Route>
+          
           <Route path='users' element={<Users> </Users>}> </Route>
         </Route>
         <Route path='/blogs' element={<Blogs></Blogs>}> </Route>

@@ -99,7 +99,7 @@ const MyOrders = () => {
                                     <td> {order.totalOrder} </td>
                                     <td> {order.number} </td>
                                     <td> {order.email} </td>
-                                    <td> Pay </td>
+                                    <td> <Link to={`/dashboard/payment/${order._id}`}> Pay </Link> </td>
                                     <td> In Process </td>
 
                                     {/* <td>
