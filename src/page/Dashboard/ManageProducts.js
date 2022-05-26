@@ -128,21 +128,6 @@ const ManageProducts = () => {
                                                 </div>
 
                                             </td>
-
-                                            {/* <td> <label for="my-modal-6" class="btn modal-button"> X </label>
-                                                
-                                                    <input type="checkbox" id="my-modal-6" class="modal-toggle" />
-                                                    <div class="modal modal-bottom sm:modal-middle">
-                                                        <div class="modal-box">
-                                                            <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                                            <h3 class="font-bold text-xl text-red-600">Are you sure you wants to DELETE this parts</h3>
-                                                            <p class="py-4">Once you delete you can never recover the parts. Its Gone Permanently !! </p>
-                                                            <div class="modal-action">
-                                                                <label for="my-modal-6" onClick={(() => deleteParts(part._id))} class="btn"> Delete </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </td> */}
                                         </tr>
                                     </tbody>)
                                 }

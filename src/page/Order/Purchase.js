@@ -20,6 +20,7 @@ const Purchase = () => {
             .then(data => setPart(data))
     }, [])
 
+    let perPrice = part?.price;
     let maxOrder = part?.stock;
     console.log(maxOrder);
 
@@ -45,7 +46,8 @@ const Purchase = () => {
                 email: email,
                 number: number,
                 address: address,
-                totalOrder: totalOrder
+                totalOrder: totalOrder,
+                totalPrice: totalOrder * perPrice
             }
 
             fetch('https://enigmatic-lake-23819.herokuapp.com/orders', {

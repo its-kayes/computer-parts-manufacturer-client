@@ -1,8 +1,10 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import { confirmAlert } from 'react-confirm-alert';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
@@ -13,26 +15,12 @@ const MyOrders = () => {
 
 
     let email = user?.email;
-    // console.log(email);
     let url = `https://enigmatic-lake-23819.herokuapp.com/orders/${email}`;
-
-
-    // let { data: orders, isLoading, refetch } = useQuery('users', () => fetch(url, {
-    //     method: 'GET',
-    //     headers: {
-    //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-    //     },
-    // }).then(res => res.json()))
-
-    // if (isLoading) {
-    //     return <Loading> </Loading>
-    // }
 
     const [orders, setOrders] = useState([]);
 
 
     useEffect(() => {
-        // console.log(user);
         if (user) {
             fetch(url, {
                 method: 'GET',
@@ -44,19 +32,14 @@ const MyOrders = () => {
                     if (res.status === 404 || res.status === 401) {
                         let errorCode = window.confirm('Invalid Login Token');
                         if (errorCode) {
-                            // signOut(auth);
-                            // localStorage.removeItem('accessToken');
                             navigate('/')
                         }
-                        // signOut(auth);
                         localStorage.removeItem('accessToken');
                         navigate('/');
                     }
-                    // console.log('res', res);
                     return res.json()
                 })
                 .then(data => {
-                    // console.log(data);
                     setOrders(data);
                 })
         }
@@ -67,7 +50,40 @@ const MyOrders = () => {
     }, [user])
 
 
-    // console.log(orders);
+
+    const submit = (id) => {
+
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure to do this ?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        console.log(id);
+
+                        fetch(`http://localhost:5000/order/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'content-type': 'application/json'
+                            }
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data);
+                                toast.warning(' Parts Delete Successfully ');
+                            })
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => {
+                        toast.warn(' Delete Cancel ');
+                    }
+                }
+            ]
+        });
+    }
 
 
     return (
@@ -86,7 +102,9 @@ const MyOrders = () => {
                                 <th>Total Order </th>
                                 <th>Number </th>
                                 <th>Email</th>
+                                <th> Cost </th>
                                 <th>Payment</th>
+                                <th> Action </th>
                                 <th>Transaction ID</th>
                             </tr>
                         </thead>
@@ -99,16 +117,20 @@ const MyOrders = () => {
                                     <td> {order.totalOrder} </td>
                                     <td> {order.number} </td>
                                     <td> {order.email} </td>
-                                    <td> <Link to={`/dashboard/payment/${order._id}`}> Pay </Link> </td>
-                                    <td> In Process </td>
-
-                                    {/* <td>
-                                        {(order.price && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success'>pay</button></Link>}
-                                        {(order.price && order.paid) && <div>
-                                            <p><span className='text-success'>Paid</span></p>
-                                            <p>Transaction id: <span className='text-success'>{order.transactionId}</span></p>
-                                        </div>}
-                                    </td> */}
+                                    <td> {order.totalPrice} </td>
+                                    <td>
+                                        {
+                                            !order.transactionId && <Link to={`/dashboard/payment/${order._id}`} className='btn bg-success'> Pay </Link>
+                                        }
+                                    </td>
+                                    <td>
+                                        {
+                                            !order.transactionId && <div className='container'>
+                                                <button className='btn bg-red-700' onClick={() => submit(order._id)}> X </button>
+                                            </div>
+                                        }
+                                    </td>
+                                    <td> {order?.transactionId} </td>
                                 </tr>
                             </tbody>)
                         }
