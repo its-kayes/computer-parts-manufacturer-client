@@ -1,8 +1,12 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading';
 
 const ManageProducts = () => {
+
+    let { id } = useParams();
 
     let { data: parts, isLoading, refetch } = useQuery('parts', () => fetch('http://localhost:5000/parts', {
         method: 'GET',
@@ -18,6 +22,21 @@ const ManageProducts = () => {
 
     let deleteParts = event => {
         console.log(event);
+        if (event) {
+            <div></div>
+        }
+        fetch(`http://localhost:5000/part/${event}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.warning(' Parts Delete Successfully ')
+                refetch();
+            })
     }
 
     return (
@@ -61,8 +80,23 @@ const ManageProducts = () => {
                                             <td> {part.stock} </td>
 
                                             <td> {part.minOrder} </td>
+                                            {/* 
+                                            <td> <button onClick={()=> deleteParts(part._id)} className=' btn bg-red-600'> X </button> </td> */}
 
-                                            <td> <button onClick={(()=> deleteParts(part._id))} className=' btn bg-red-600'> X </button> </td>
+                                            <td> <label for="my-modal-6" class="btn modal-button"> X </label> </td>
+                                            <div>
+                                                <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+                                                <div class="modal modal-bottom sm:modal-middle">
+                                                    <div class="modal-box">
+                                                        <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                                        <h3 class="font-bold text-lg">Congratulations random Interner user!</h3>
+                                                        <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+                                                        <div class="modal-action">
+                                                            <label for="my-modal-6" onClick={() => deleteParts(part._id)} class="btn"> Delete </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                     </tbody>)
                                 }
