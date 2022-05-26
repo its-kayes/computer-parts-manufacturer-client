@@ -2,6 +2,9 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 
+
+
+
 const ManageOrders = () => {
 
     let { data: orders, isLoading, refetch } = useQuery('orders', () => fetch('https://enigmatic-lake-23819.herokuapp.com/manageorders').then(res => res.json()));
@@ -38,16 +41,8 @@ const ManageOrders = () => {
                                     <td> {order.totalOrder} </td>
                                     <td> {order.number} </td>
                                     <td> {order.email} </td>
-                                    <td> Due </td>
-                                    <td> In Process </td>
-
-                                    {/* <td>
-                                        {(order.price && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success'>pay</button></Link>}
-                                        {(order.price && order.paid) && <div>
-                                            <p><span className='text-success'>Paid</span></p>
-                                            <p>Transaction id: <span className='text-success'>{order.transactionId}</span></p>
-                                        </div>}
-                                    </td> */}
+                                    <td> {order.transactionId ? <p className='text-success font-bold'> Pending </p> : <p className=' font-bold text-red-500 '> Unpaid</p> } </td>
+                                    <td> {order?.transactionId} </td>
                                 </tr>
                             </tbody>)
                         }

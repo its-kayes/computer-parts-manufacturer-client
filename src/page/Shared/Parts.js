@@ -4,13 +4,6 @@ import useParts from '../../hook/useParts';
 import './parts.css';
 
 const Parts = () => {
-    // let [parts, setParts] = useState();
-
-    // useEffect(()=> {
-    //     fetch('parts.json')
-    //     .then(res => res.json())
-    //     .then(data => setParts(data));
-    // }, [])
     let parts = useParts();
     let navigate = useNavigate();
 

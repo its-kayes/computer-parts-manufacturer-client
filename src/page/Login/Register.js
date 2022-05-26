@@ -1,12 +1,10 @@
-import { async } from '@firebase/util';
 import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useUpdateProfile } from 'react-firebase-hooks/auth'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useToken from '../../hook/useToken';
 import Loading from '../Shared/Loading';
 import Social from './Social';
-// import Social from '../Social/Social';
 
 
 
@@ -15,6 +13,9 @@ let errorElement;
 
 const Register = () => {
     let [displayName, setDisplayName] = useState('');
+    let location = useLocation();
+    let navigate = useNavigate();
+
 
     const [sendEmailVerification, sending, verifyError] = useSendEmailVerification(auth);
 
@@ -35,7 +36,6 @@ const Register = () => {
         const email = event.target.email.value;
         let name = event.target.name.value;
         const password = event.target.password.value;
-        // setDisplayName();
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({displayName: name});
         await sendEmailVerification();
@@ -50,8 +50,11 @@ const Register = () => {
         errorElement = <p className='text-center bg-red-700 rounded-full mt-5 text-white p-3'>  {error?.message} {verifyError?.message} </p>
     }
 
-    // console.log(name);
-    // console.log(user);
+    let from = location.state?.from?.pathname || "/";
+    if (user) {
+        navigate(from, { replace: true });
+    }
+
 
     return (
         <div>

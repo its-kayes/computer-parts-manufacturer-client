@@ -36,9 +36,13 @@ const Purchase = () => {
 
         let minOrder = 70;
 
-        if (totalOrder < minOrder || totalOrder > maxOrder) {
-            toast.warning(' beshi order de hala ');
+        if (totalOrder < minOrder) {
+            toast.warning(' Your Order should be higher than our Minimum order Requirement ');
         }
+        if( totalOrder > maxOrder ) {
+            toast.warning(' Your Order can not be higher than our total stock ');
+        }
+        
         else {
             let orderDetails = {
                 partsName: part.name,
@@ -60,7 +64,6 @@ const Purchase = () => {
                 .then(res => res.json())
                 .then(data => console.log(data))
 
-            // console.log(orderDetails);
             toast.success('We are waiting for your payment, check your dashboard and clear your payment')
             event.target.reset();
 

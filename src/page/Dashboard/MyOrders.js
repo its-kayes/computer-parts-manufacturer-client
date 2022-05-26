@@ -43,9 +43,6 @@ const MyOrders = () => {
                     setOrders(data);
                 })
         }
-        // else{
-        //     navigate('/login')
-        // }
 
     }, [user])
 
@@ -62,7 +59,7 @@ const MyOrders = () => {
                     onClick: () => {
                         console.log(id);
 
-                        fetch(`http://localhost:5000/order/${id}`, {
+                        fetch(`https://enigmatic-lake-23819.herokuapp.com/order/${id}`, {
                             method: 'DELETE',
                             headers: {
                                 'content-type': 'application/json'

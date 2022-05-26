@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import useToken from '../../hook/useToken';
@@ -7,21 +8,24 @@ import Loading from '../Shared/Loading';
 
 
 const Social = () => {
+    let location = useLocation();
+    let navigate = useNavigate();
+
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, gitUser, gitLoading, gitError] = useSignInWithGithub(auth);
 
-    // if (loading) {
-    //     return <Loading> </Loading>
-    // }
-    // if (gitLoading) {
-    //     return <Loading> </Loading>
-    // }
+   
     let [token] = useToken(user);
 
     if (error) {
         <div>
             {toast.error(' Login Failed ')}
         </div>
+    }
+
+    let from = location.state?.from?.pathname || "/";
+    if (user) {
+        navigate(from, { replace: true });
     }
 
 
