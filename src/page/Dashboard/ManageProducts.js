@@ -83,20 +83,21 @@ const ManageProducts = () => {
                                             {/* 
                                             <td> <button onClick={()=> deleteParts(part._id)} className=' btn bg-red-600'> X </button> </td> */}
 
-                                            <td> <label for="my-modal-6" class="btn modal-button"> X </label> </td>
-                                            <div>
-                                                <input type="checkbox" id="my-modal-6" class="modal-toggle" />
-                                                <div class="modal modal-bottom sm:modal-middle">
-                                                    <div class="modal-box">
-                                                        <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                                        <h3 class="font-bold text-lg">Congratulations random Interner user!</h3>
-                                                        <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-                                                        <div class="modal-action">
-                                                            <label for="my-modal-6" onClick={() => deleteParts(part._id)} class="btn"> Delete </label>
+                                            <td> <label for="my-modal-6" class="btn modal-button"> X </label>
+                                                
+                                                    <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+                                                    <div class="modal modal-bottom sm:modal-middle">
+                                                        <div class="modal-box">
+                                                            <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                                            <h3 class="font-bold text-xl text-red-600">Are you sure you wants to DELETE this parts</h3>
+                                                            <p class="py-4">Once you delete you can never recover the parts. Its Gone Permanently !! </p>
+                                                            <div class="modal-action">
+                                                                <label for="my-modal-6" onClick={() => deleteParts(part._id)} class="btn"> Delete </label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                               
+                                            </td>
                                         </tr>
                                     </tbody>)
                                 }

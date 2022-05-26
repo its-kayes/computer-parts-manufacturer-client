@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const AddProduct = () => {
 
@@ -30,7 +31,10 @@ const AddProduct = () => {
             body: JSON.stringify(newParts)
         })
         .then(res =>res.json())
-        .then( data => console.log(data))
+        .then( data => {
+            console.log(data);
+            toast.success(' Parts Add to Our Store  ')
+        })
     }
 
 
